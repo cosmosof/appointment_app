@@ -1,6 +1,6 @@
 <p align="center">
     <img alt="React"src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="90" />
-    <img alt="Redux" src="./src/images/logo-title-dark.png" width="200" />
+    <img alt="Redux" src="./assets/images/logo-title-dark.png" width="200" />
 </p>
 <h1 align="center">
   React Native, Redux, Expo IOS & Android Appointment App
