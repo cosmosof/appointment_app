@@ -2,6 +2,7 @@ import * as actionTypes from "./actionTypes";
 
 export const addAppointment = appointment =>{
     console.log(`appointment create: ${appointment}`);
+    //console.warn(appointment);
 
     return ({
         type: 'ADD_APPOINTMENT',

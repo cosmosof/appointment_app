@@ -40,7 +40,6 @@ class UpdateAppointmentScreen extends React.Component {
   constructor(props) {
     super(props);
     const { params } = this.props.navigation.state;
-    console.warn(params.item.id);
     this.state = {
       id: params.item.id,
       person: params.item.person,
@@ -66,7 +65,6 @@ class UpdateAppointmentScreen extends React.Component {
       endTimeConflict,
       id
     } = this.state;
-    console.warn(id);
     switch (true) {
       case !person:
         this.setState({ personErr: true, locationErr: false });

@@ -51,7 +51,6 @@ class AddAppointmentScreen extends React.Component {
       startTimeConflict,
       endTimeConflict
     } = this.state;
-    console.log(notes, chosenStartDate, chosenEndDate, location, person);
 
     switch (true) {
       case !person:
@@ -77,7 +76,7 @@ class AddAppointmentScreen extends React.Component {
     }
   }
 
-  checkTimeConflict = (e, f) => {
+  handleDate = (e, f) => {
     const appointmentsForTheDay = this.props.appointments[
       `${moment(e).format("YYYY-MM-DD")}`
     ];
@@ -109,15 +108,30 @@ class AddAppointmentScreen extends React.Component {
         }
         return isBetween === true;
       });
+    } else {
+      switch (f) {
+        case "startTime":
+          this.setState({ chosenStartDate: e, startTimeConflict: false });
+          break;
+        case "endTime":
+            this.setState({ chosenEndDate: e, endTimeConflict: false });
+          break;
+        default:
+          break;
+      }
     }
+
   };
   render() {
     const {
       personErr,
       locationErr,
       startTimeConflict,
-      endTimeConflict
+      endTimeConflict,
+      chosenStartDate,
+      chosenEndDate  
     } = this.state;
+    const minDate = moment().toISOString()
     return (
       <ScrollView
         style={styles.container}
@@ -160,10 +174,10 @@ class AddAppointmentScreen extends React.Component {
         <View style={styles.inputRow}>
           <InputLabel label="Start Time" />
           <DatePicker
-            minDate={moment().toISOString()}
+            minDate={minDate}
             showIcon={false}
             style={{ width: 220 }}
-            date={this.state.chosenStartDate}
+            date={chosenStartDate}
             mode="datetime"
             placeholder="select date"
             confirmBtnText="Confirm"
@@ -178,7 +192,7 @@ class AddAppointmentScreen extends React.Component {
                 color: Colors.charcoal
               }
             }}
-            onDateChange={date => this.checkTimeConflict(date, "startTime")}
+            onDateChange={date => this.handleDate(date, "startTime")}
           />
         </View>
         <Text style={styles.error}>
@@ -188,10 +202,10 @@ class AddAppointmentScreen extends React.Component {
         <View style={styles.inputRow}>
           <InputLabel label="End Time" />
           <DatePicker
-            minDate={moment().toISOString()}
+            minDate={minDate}
             showIcon={false}
             style={{ width: 220 }}
-            date={this.state.chosenEndDate}
+            date={chosenEndDate}
             mode="datetime"
             placeholder="select date"
             confirmBtnText="Confirm"
@@ -206,7 +220,7 @@ class AddAppointmentScreen extends React.Component {
                 color: Colors.charcoal
               }
             }}
-            onDateChange={date => this.checkTimeConflict(date, "endTime")}
+            onDateChange={date => this.handleDate(date, "endTime")}
           />
         </View>
         <Text style={styles.error}>
