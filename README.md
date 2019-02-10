@@ -7,7 +7,7 @@
 </h1>
 
 <h3 align="center">
-  Keep tracks of personal appointments
+  Keeps track of personal appointments
 </h3>
 
 <p align="center">
